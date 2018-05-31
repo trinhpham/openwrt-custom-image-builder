@@ -1,6 +1,6 @@
 FROM centos
 
-RUN yum install -y subversion git gawk gettext time \
+RUN yum install -y subversion git gawk gettext time which \
 		ncurses-devel zlib-devel openssl-devel libxslt wget && \
 	yum group install -y "Development Tools" && \
 	yum clean all
