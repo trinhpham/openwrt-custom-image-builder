@@ -11,7 +11,9 @@ make image PROFILE=mir3g PACKAGES="luci minidlna luci-app-minidlna \
 	block-mount"
 
 RELEASE_NAME="v0.1-$(date +%Y%m%d_%H%M%S)"
-	
+
+echo Begin upload the release: $RELEASE_NAME
+
 github-release release \
     --user trinhpham \
     --repo xiaomi-r3g-openwrt-builder \
