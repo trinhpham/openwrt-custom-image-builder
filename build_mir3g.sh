@@ -60,4 +60,7 @@ if [ $? -eq 0 ]; then
 		--tag $RELEASE_NAME \
 		--name openwrt-ramips-mt7621-mir3g-squashfs-sysupgrade.tar \
 		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-mir3g-squashfs-sysupgrade.tar
+else
+	echo "Build has been failed"
+	exit 2
 fi
