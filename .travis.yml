@@ -9,6 +9,4 @@ before_install:
   - docker pull trinhpham/xiaomi-r3g-openwrt-builder
 
 script:
-  - mkdir bin
-  - docker run -t --name=trinhpham_ci --rm -v bin:/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin trinhpham/xiaomi-r3g-openwrt-builder make image PROFILE=mir3g PACKAGES="luci minidlna luci-app-minidlna samba36-server transmission-web openvpn-openssl openssl-util luci-app-openvpn kmod-usb-storage kmod-fs-ext4 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 kmod-fs-msdos kmod-fs-ntfs block-mount"
-  - ls -aR bin
+  - docker run -t --name=trinhpham_ci --rm trinhpham/xiaomi-r3g-openwrt-builder
