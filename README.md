@@ -1,8 +1,10 @@
 [![Build Status](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder)
+
 [Latest build](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder/releases/latest)
+
 [Homepage](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder)
 
-#Introduction
+# Introduction
 The OpenWRT project is supporting for the device Xiaomi Router Gen 3G.
 However, the snapshot build is a minimal version without WebUI and some common components like SAMBA, DLNA, OpenVPN, torrent,...
 To be updated to the latest build, it takes time to do the most boring tasks: flash the update, install my needed components.
@@ -13,12 +15,12 @@ Read this if you are interesting:
 - Minimal OpenWRT Firmware [download page](https://downloads.lede-project.org/snapshots/targets/ramips/mt7621/)
 - Padavan is providing support for this device also, take a look at [prometheus](http://prometheus.freize.net), etc.
 
-#The docker image
+# The docker image
 Name: trinhpham/xiaomi-r3g-openwrt-builder
 This is an build-automated docker image that have all needed build tools and libraries installed.
 This also includes github-release tool for the script `build_mir3g.sh` to automatic deploy new release files to Github
 
-#The Travis-CI build
+# The Travis-CI build
 You can view my automated build at [travis-ci.org](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder).
 This build call the build script `build_mir3g.sh` inside a Docker container of Docker image above.
 There are two notes if you'd like to fork my build:
