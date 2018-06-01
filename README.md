@@ -17,12 +17,14 @@ Read this if you are interesting:
 
 # The docker image
 Name: trinhpham/xiaomi-r3g-openwrt-builder
+
 This is an build-automated docker image that have all needed build tools and libraries installed.
 This also includes github-release tool for the script `build_mir3g.sh` to automatic deploy new release files to Github
 
 # The Travis-CI build
 You can view my automated build at [travis-ci.org](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder).
 This build call the build script `build_mir3g.sh` inside a Docker container of Docker image above.
+
 There are two notes if you'd like to fork my build:
 - You must pass the environment variable GITHUB_TOKEN for the github-release
 - Travis-CI.org doesn't support Docker volume mounting (except its Enterprise plan), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build task inside the Docker container, tell me if you have any better idea :)
