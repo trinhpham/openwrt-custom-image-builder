@@ -10,3 +10,7 @@ before_install:
 
 script:
   - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN trinhpham/xiaomi-r3g-openwrt-builder
+  
+ branches:
+  only:
+  - master
