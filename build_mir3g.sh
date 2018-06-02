@@ -24,7 +24,7 @@ if [ $? -eq 0 ]; then
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name $RELEASE_NAME \
-		--description 'CI build includes: $RELEASE_MODULES'
+		--description "CI build includes: ${RELEASE_MODULES}"
 		
 	github-release upload \
 		--user trinhpham \
