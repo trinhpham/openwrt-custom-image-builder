@@ -15,6 +15,9 @@ rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
 cd openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
 make image PROFILE=mir3g "PACKAGES=${RELEASE_MODULES}"
 
+echo "Current ouput dir"
+ls -laR bin/targets/ramips/mt7621/
+
 if [ $? -eq 0 ]; then
 
 	echo "Begin upload the release: $RELEASE_NAME"
