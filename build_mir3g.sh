@@ -33,15 +33,15 @@ if [ $? -eq 0 ]; then
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
-		--name openwrt-ramips-mt7621-device-mir3g.manifest \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-device-mir3g.manifest
+		--name openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest \
+		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest
 		
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
-		--name openwrt-ramips-mt7621-mir3g-squashfs-rootfs0.bin \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-mir3g-squashfs-rootfs0.bin
+		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-rootfs0.bin \
+		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-rootfs0.bin
 		
 	github-release upload \
 		--user trinhpham \
@@ -54,15 +54,15 @@ if [ $? -eq 0 ]; then
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
-		--name openwrt-ramips-mt7621-mir3g-squashfs-kernel1.bin \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-mir3g-squashfs-kernel1.bin
+		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-kernel1.bin \
+		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-kernel1.bin
 		
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
-		--name openwrt-ramips-mt7621-mir3g-squashfs-sysupgrade.tar \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-mir3g-squashfs-sysupgrade.bin
+		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-sysupgrade.bin \
+		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-sysupgrade.bin
 else
 	echo "Build has been failed"
 	exit 2
