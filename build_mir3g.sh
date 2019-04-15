@@ -1,11 +1,9 @@
 #!/bin/bash
 
-RELEASE_NAME=v0.1-$(date +%Y%m%d_%H%M%S)
-RELEASE_MODULES="luci minidlna luci-app-minidlna \
-	samba36-server transmission-web openvpn-openssl openssl-util \
-	luci-app-openvpn kmod-usb-storage kmod-fs-ext4 kmod-fs-vfat \
-	kmod-nls-cp437 kmod-nls-iso8859-1 kmod-fs-msdos kmod-fs-ntfs \
-	block-mount"
+set -xe
+
+RELEASE_NAME=v0.2-$(date +%Y%m%d_%H%M%S)
+RELEASE_MODULES=`cat modules.txt`
 
 echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
 	
@@ -18,7 +16,7 @@ make image PROFILE=xiaomi_mir3g "PACKAGES=${RELEASE_MODULES}"
 echo "Current ouput dir"
 ls -laR bin/targets/ramips/mt7621/
 
-if [ $? -eq 0 ]; then
+if [ $? -eq 0 ] && [[ ! -z "$GITHUB_TOKEN" ]] ; then
 
 	echo "Begin upload the release: $RELEASE_NAME"
 
@@ -34,36 +32,36 @@ if [ $? -eq 0 ]; then
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest
+		--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest
 		
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-rootfs0.bin \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-rootfs0.bin
+		--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-rootfs0.bin
 		
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name sha256sums \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/sha256sums
+		--file bin/targets/ramips/mt7621/sha256sums
 
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-kernel1.bin \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-kernel1.bin
+		--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-kernel1.bin
 		
 	github-release upload \
 		--user trinhpham \
 		--repo xiaomi-r3g-openwrt-builder \
 		--tag $RELEASE_NAME \
 		--name openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-sysupgrade.bin \
-		--file /src/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-sysupgrade.bin
+		--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g-squashfs-sysupgrade.bin
 else
-	echo "Build has been failed"
+	echo "Build has been failed or Github token not found!"
 	exit 2
 fi
