@@ -13,7 +13,6 @@ RUN yum install -y yum-plugin-ovl subversion git gawk gettext time \
 		centos-release-scl && \
 	yum group install -y "Development Tools" && \
 	yum install -y rh-python36 && \
-	scl enable rh-python36 bash && \
 	yum clean all
 
 WORKDIR /src
