@@ -1,6 +1,6 @@
-sudo: required
-
-language: c++
+language: cpp
+os: linux
+dist: xenial
 
 services:
   - docker
