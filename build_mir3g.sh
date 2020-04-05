@@ -37,7 +37,7 @@ if [ $? -eq 0 ] ; then
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest \
-			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi-mir3g.manifest
+			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g.manifest
 			
 		github-release upload \
 			--user $GIT_USER \
