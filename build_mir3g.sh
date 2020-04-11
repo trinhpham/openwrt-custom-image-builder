@@ -9,7 +9,8 @@ GIT_REPO_NAME=${GIT_REPO##*/}
 
 echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
 
-scl enable rh-python36 bash
+# scl enable rh-python36 bash
+source /opt/rh/rh-python36/enable
 
 wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
 tar -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz >/dev/null
@@ -36,7 +37,7 @@ if [ $? -eq 0 ] ; then
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest \
-			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-device-xiaomi-mir3g.manifest
+			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_mir3g.manifest
 			
 		github-release upload \
 			--user $GIT_USER \
