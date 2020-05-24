@@ -28,7 +28,7 @@ This build calls the build script `build_mir3g.sh` inside a Docker container of 
 # Fork notes
 There are some notes if you'd like to fork my build:
 - You must pass the environment variable GITHUB_TOKEN for the github-release
-- Travis-CI.org doesn't support Docker volume mounting (except its Enterprise plan), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build task inside the Docker container, tell me if you have any better idea :)
+- ~Travis-CI.org doesn't support Docker volume mounting (except its Enterprise plan), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build task inside the Docker container, tell me if you have any better idea :)~ => It seems we can get the job done quicker using Docker volume mount now.
 - Update your preferred modules in `modules.txt`
 
 # Debug
