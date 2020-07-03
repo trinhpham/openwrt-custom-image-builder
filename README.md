@@ -29,6 +29,7 @@ Name: [trinhpham/xiaomi-r3g-openwrt-builder](https://hub.docker.com/r/trinhpham/
 # The Travis-CI build
 You can view my automated build at [travis-ci.org](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder).
 This build calls the build script `build_mir3g.sh` inside a Docker container of Docker image above.
+
 _Note:_ Travis-CI.org doesn't support Docker volume mounting (except its Enterprise plan, [ref](https://docs.travis-ci.com/user/enterprise/worker-configuration/#mounting-volumes-across-worker-jobs-on-enterprise)), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build task inside the Docker container, tell me if you have any better idea :). 
 
 # Fork notes
