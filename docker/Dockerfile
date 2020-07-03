@@ -2,7 +2,7 @@ FROM golang
 
 RUN go get github.com/aktau/github-release
 
-FROM centos
+FROM centos:7
 
 COPY --from=0 /go/bin/github-release /usr/local/bin/
 
