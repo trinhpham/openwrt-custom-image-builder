@@ -6,7 +6,8 @@ services:
   - docker
 
 before_install:
-  - docker pull trinhpham/xiaomi-r3g-openwrt-builder
+  #- docker pull trinhpham/xiaomi-r3g-openwrt-builder
+  - docker build -t trinhpham/xiaomi-r3g-openwrt-builder ./docker
 
 script:
   - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG trinhpham/xiaomi-r3g-openwrt-builder
