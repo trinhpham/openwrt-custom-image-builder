@@ -9,8 +9,8 @@ GIT_REPO_NAME=${GIT_REPO##*/}
 
 echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
 
-# scl enable rh-python36 bash
-source /opt/rh/rh-python36/enable
+# scl enable rh-python38 bash
+source /opt/rh/rh-python38/enable
 
 wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
 tar -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz >/dev/null
