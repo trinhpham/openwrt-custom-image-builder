@@ -12,7 +12,7 @@ before_install:
 
 script:
   - RELEASE_MODULES=$(cat ./modules/$RELEASE_MODEL.txt)
-  - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG -e RELEASE_MODEL=$RELEASE_MODEL -e RELEASE_MODULES=$RELEASE_MODULES trinhpham/xiaomi-r3g-openwrt-builder
+  - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG -e RELEASE_MODEL=$RELEASE_MODEL -e "RELEASE_MODULES=$RELEASE_MODULES" trinhpham/xiaomi-r3g-openwrt-builder
   
 branches:
   only:
