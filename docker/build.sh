@@ -6,7 +6,7 @@ set -xe
 
 # Prepare all needed environment variables
 OPENWRT_VERSION=${OPENWRT_VERSION:-snapshots}
-RELEASE_NAME=${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
+RELEASE_NAME=${OPENWRT_VERSION}-${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
 
 RELEASE_MODEL=${RELEASE_MODEL:-xiaomi_mi-router-3g}
 RELEASE_ARCH=${RELEASE_ARCH:-ramips}
@@ -20,17 +20,18 @@ OPENWRT_DOWNLOAD_HOST=${OPENWRT_DOWNLOAD_HOST:-downloads.openwrt.org}
 echo "Begin build ${RELEASE_NAME}@${OPENWRT_VERSION} for ${RELEASE_MODEL} with modules: ${RELEASE_MODULES}"
 
 if [ "${OPENWRT_VERSION}" == "snapshots" ]; then 
-	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/${OPENWRT_VERSION}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
+	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 else
-	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
+	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${OPENWRT_VERSION}-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 fi
 
 # Save some debug time
-if [ ! -f openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz ]; then
-	wget $DOWNLOAD_URL
+if [ ! -f openwrt-imagebuilder.tar.xz ]; then
+	wget $DOWNLOAD_URL -O openwrt-imagebuilder.tar.xz
 fi
-tar -xf openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz -C /tmp/
-cd /tmp/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64
+tar -xf openwrt-imagebuilder.tar.xz -C /tmp/
+mv /tmp/openwrt-imagebuilder-* /tmp/openwrt-imagebuilder
+cd /tmp/openwrt-imagebuilder
 
 BIN_DIR=/openwrt/target/
 mkdir -p $BIN_DIR
