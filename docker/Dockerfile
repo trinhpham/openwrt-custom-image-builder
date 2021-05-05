@@ -19,6 +19,7 @@ RUN dnf install -y \
 	ncurses-devel \
 	openssl-devel \
 	perl-Thread-Queue \
+	python2 \
 	python38 \
 	rsync \
 	time \
