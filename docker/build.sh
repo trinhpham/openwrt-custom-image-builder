@@ -60,14 +60,14 @@ if [ $? -eq 0 ] ; then
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}.manifest \
-			--file $BIN_DIR/openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}.manifest
+			--file `ls $BIN_DIR/openwrt-*.manifest`
 			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-rootfs0.bin \
-			--file $BIN_DIR/openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-rootfs0.bin
+			--file `ls $BIN_DIR/openwrt-*-squashfs-rootfs0.bin`
 			
 		github-release upload \
 			--user $GIT_USER \
@@ -81,14 +81,14 @@ if [ $? -eq 0 ] ; then
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-kernel1.bin \
-			--file $BIN_DIR/openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-kernel1.bin
+			--file `ls $BIN_DIR/openwrt-*-squashfs-kernel1.bin`
 			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-sysupgrade.bin \
-			--file $BIN_DIR/openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-sysupgrade.bin
+			--file `ls $BIN_DIR/openwrt-*-squashfs-sysupgrade.bin`
 	else
 		echo "Skip github release uploading"
 	fi
