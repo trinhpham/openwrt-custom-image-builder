@@ -31,12 +31,13 @@ RUN dnf install -y \
 WORKDIR /openwrt
 ADD build.sh /openwrt/
 
-ENV GIT_REPO=trinhpham/xiaomi-r3g-openwrt-builder
-ENV OPENWRT_VERSION=${OPENWRT_VERSION:-snapshots}
-ENV OPENWRT_DOWNLOAD_HOST=downloads.openwrt.org
-ENV RELEASE_PREFIX=v1.0
-ENV RELEASE_MODEL=xiaomi_mi-router-3g
-ENV RELEASE_ARCH=ramips
-ENV RELEASE_SOC=mt7621
+ENV GIT_REPO=trinhpham/xiaomi-r3g-openwrt-builder \
+	OPENWRT_VERSION=snapshots \
+	OPENWRT_DOWNLOAD_HOST=downloads.openwrt.org \
+	RELEASE_PREFIX=v1.0 \
+	RELEASE_MODEL=xiaomi_mi-router-3g \
+	RELEASE_MODULES= \
+	RELEASE_ARCH=ramips \
+	RELEASE_SOC=mt7621
 
 CMD ["/openwrt/build.sh"]
