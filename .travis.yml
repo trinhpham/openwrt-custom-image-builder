@@ -12,7 +12,7 @@ before_install:
 
 script:
   - RELEASE_MODULES=$(cat ./modules/$RELEASE_MODEL.txt)
-  - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG -e RELEASE_MODEL=$RELEASE_MODEL -e "RELEASE_MODULES=$RELEASE_MODULES" -e RELEASE_ARCH=$RELEASE_ARCH -e RELEASE_SOC=$RELEASE_SOC trinhpham/xiaomi-r3g-openwrt-builder
+  - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG -e OPENWRT_VERSION=$OPENWRT_VERSION -e RELEASE_MODEL=$RELEASE_MODEL -e "RELEASE_MODULES=$RELEASE_MODULES" -e RELEASE_ARCH=$RELEASE_ARCH -e RELEASE_SOC=$RELEASE_SOC trinhpham/xiaomi-r3g-openwrt-builder
   
 branches:
   only:
@@ -22,5 +22,5 @@ jobs:
   include:
     - name: r3g-snapshot
       env: OPENWRT_VERSION=snapshot RELEASE_MODEL=xiaomi_mi-router-3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
-    - name: r3g-19.07.7
-      env: OPENWRT_VERSION=19.07.7 RELEASE_MODEL=xiaomi_mi-router-3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
+    - name: r3g-stable
+      env: OPENWRT_VERSION=stable RELEASE_MODEL=xiaomi_mir3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
