@@ -21,6 +21,6 @@ branches:
 jobs:
   include:
     - name: r3g-snapshot
-      env: OPENWRT_VERSION=snapshot RELEASE_MODEL=xiaomi_mi-router-3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
+      env: OPENWRT_VERSION=snapshots RELEASE_MODEL=xiaomi_mi-router-3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
     - name: r3g-stable
       env: OPENWRT_VERSION=stable RELEASE_MODEL=xiaomi_mir3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
