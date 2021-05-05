@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder)
+[![Build Status](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder)
 
 [Latest build](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder/releases/latest)
 
@@ -11,14 +11,15 @@ To be updated to the latest build, it takes time to do some of the most boring t
 That's the reason for me to build this repository and make all thing be automated.
 
 Read this if you are interesting:
-- The cheap but very powerful device: [Xiaomi Router Gen 3G](https://wiki.openwrt.org/toh/xiaomi/mir3g)
+- The cheap but very powerful device: [Xiaomi Router Gen 3G](https://openwrt.org/toh/xiaomi/mir3g)
 - Minimal OpenWRT Firmware [download page](https://downloads.lede-project.org/snapshots/targets/ramips/mt7621/)
 - Padavan is providing support for this device also, take a look at [prometheus](http://prometheus.freize.net) if you are looking for another kind of firmware.
 
 # Help wanted
 - [ ] Change the docker base image to [openwrtorg/imagebuilder](https://hub.docker.com/r/openwrtorg/imagebuilder) instead of centos 7 as current
-- [ ] Support build for both release/stable and snapshot version
-- [ ] Support build for other devices
+- [x] Support build for both release/stable and snapshot version
+- [x] Support build for other devices
+- [ ] Move to Circle-CI, which allows us to have better Docker integration, and store build output as artifacts
 
 # The docker image
 Name: [trinhpham/xiaomi-r3g-openwrt-builder](https://hub.docker.com/r/trinhpham/xiaomi-r3g-openwrt-builder)
@@ -27,7 +28,7 @@ Name: [trinhpham/xiaomi-r3g-openwrt-builder](https://hub.docker.com/r/trinhpham/
 - This also includes github-release tool for the script `build_mir3g.sh` to automatic deploy new release files to Github
 
 # The Travis-CI build
-You can view my automated build at [travis-ci.org](https://travis-ci.org/trinhpham/xiaomi-r3g-openwrt-builder).
+You can view my automated build at [travis-ci.com](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder).
 This build calls the build script `build_mir3g.sh` inside a Docker container of Docker image above.
 
 _Note:_ Travis-CI.org doesn't support Docker volume mounting (except its Enterprise plan, [ref](https://docs.travis-ci.com/user/enterprise/worker-configuration/#mounting-volumes-across-worker-jobs-on-enterprise)), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build task inside the Docker container, tell me if you have any better idea :). 

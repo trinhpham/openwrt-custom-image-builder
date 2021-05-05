@@ -2,23 +2,41 @@ FROM golang
 
 RUN go get github.com/aktau/github-release
 
-FROM centos:7
+FROM centos:8
 
 COPY --from=0 /go/bin/github-release /usr/local/bin/
 
-ADD wandisco.repo /etc/yum.repos.d/
+RUN dnf install -y \
+	bzip2 \
+	diffutils \
+	file \
+	gawk \
+	gcc \
+	gettext \
+	git \
+	libxslt \
+	make \
+	ncurses-devel \
+	openssl-devel \
+	perl-Thread-Queue \
+	python38 \
+	rsync \
+	time \
+	unzip \
+	wget \
+	which \
+	zlib-devel \
+	&& dnf clean all
 
-RUN yum install -y yum-plugin-ovl subversion git gawk gettext time \
-		which ncurses-devel zlib-devel openssl-devel libxslt wget \
-		centos-release-scl && \
-	yum group install -y "Development Tools" && \
-	yum install -y rh-python38 && \
-	yum clean all
-
-WORKDIR /src
+WORKDIR /openwrt
+ADD build.sh /openwrt/
 
 ENV GIT_REPO=trinhpham/xiaomi-r3g-openwrt-builder
+ENV OPENWRT_VERSION=${OPENWRT_VERSION:-snapshots}
+ENV OPENWRT_DOWNLOAD_HOST=downloads.openwrt.org
+ENV RELEASE_PREFIX=v1.0
+ENV RELEASE_MODEL=xiaomi_mi-router-3g
+ENV RELEASE_ARCH=ramips
+ENV RELEASE_SOC=mt7621
 
-ADD start.sh /src/
-
-CMD ["/src/start.sh"]
+CMD ["/openwrt/build.sh"]

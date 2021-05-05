@@ -1,0 +1,1 @@
+luci minidlna luci-app-minidlna samba4-server luci-app-samba4 transmission-web openvpn-openssl openssl-util luci-app-openvpn kmod-usb-storage kmod-fs-ext4 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 kmod-fs-msdos kmod-fs-ntfs block-mount
