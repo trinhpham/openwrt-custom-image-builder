@@ -23,6 +23,10 @@ if [ "${OPENWRT_VERSION}" == "snapshots" ]; then
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 elif [ "${OPENWRT_VERSION}" == "stable" ]; then 
 	OPENWRT_VERSION=`curl -s https://openwrt.org/ | grep -oP 'Current Stable Release[^0-9]*\K[0-9]*\.[0-9]*\.[0-9]*'`
+	if [ -z "$OPENWRT_VERSION" ]; then
+		echo "Unable to find the stable version of OpenWrt"
+		exit 2
+	fi
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${OPENWRT_VERSION}-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 else
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${OPENWRT_VERSION}-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
