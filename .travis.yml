@@ -11,7 +11,7 @@ before_install:
   - docker build -t trinhpham/xiaomi-r3g-openwrt-builder ./docker
 
 script:
-  - RELEASE_MODULES=$(cat ./modules/$RELEASE_MODEL.txt)
+  - RELEASE_MODULES=$(cat ./modules/$RELEASE_MODEL.txt | tr '\n' ' ')
   - docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG -e OPENWRT_VERSION=$OPENWRT_VERSION -e RELEASE_MODEL=$RELEASE_MODEL -e "RELEASE_MODULES=$RELEASE_MODULES" -e RELEASE_ARCH=$RELEASE_ARCH -e RELEASE_SOC=$RELEASE_SOC trinhpham/xiaomi-r3g-openwrt-builder
   
 branches:
