@@ -45,6 +45,7 @@ make image PROFILE=${RELEASE_MODEL} "PACKAGES=${RELEASE_MODULES}" BIN_DIR=${BIN_
 
 echo "Current ouput dir: $BIN_DIR"
 ls -laR $BIN_DIR
+cd $BIN_DIR
 
 if [ $? -eq 0 ] ; then
 	if [[ ! -z "$GITHUB_TOKEN" ]] ; then
@@ -61,36 +62,36 @@ if [ $? -eq 0 ] ; then
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
-			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}.manifest \
-			--file `ls $BIN_DIR/openwrt-*.manifest`
+			--name `ls openwrt-*.manifest` \
+			--file `ls openwrt-*.manifest`
 			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
-			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-rootfs0.bin \
-			--file `ls $BIN_DIR/openwrt-*-squashfs-rootfs0.bin`
+			--name `ls openwrt-*-squashfs-rootfs0.bin` \
+			--file `ls openwrt-*-squashfs-rootfs0.bin`
 			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name sha256sums \
-			--file $BIN_DIR/sha256sums
+			--file sha256sums
 
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
-			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-kernel1.bin \
-			--file `ls $BIN_DIR/openwrt-*-squashfs-kernel1.bin`
+			--name `ls openwrt-*-squashfs-kernel1.bin` \
+			--file `ls openwrt-*-squashfs-kernel1.bin`
 			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
-			--name openwrt-${RELEASE_ARCH}-${RELEASE_SOC}-${RELEASE_MODEL}-squashfs-sysupgrade.bin \
-			--file `ls $BIN_DIR/openwrt-*-squashfs-sysupgrade.bin`
+			--name `ls openwrt-*-squashfs-sysupgrade.bin` \
+			--file `ls openwrt-*-squashfs-sysupgrade.bin`
 	else
 		echo "Skip github release uploading"
 	fi
