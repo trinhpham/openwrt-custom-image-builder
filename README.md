@@ -5,15 +5,25 @@
 [Homepage](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder)
 
 # Introduction
-The OpenWRT project is supporting for the device Xiaomi Router Gen 3G.
+**NOTE**: 
+- *This repository helps generate OpenWrt firmware for <u>**any**</u> supported devices. I keep the old repo name, since it was first made to generate firmwares for my first OpenWrt router: Xiaomi Router Gen 3G.*
+- *This repository is just for building the firmware. Any OpenWrt related issue should be posted to OpenWrt's forum.*
+- *Read your device's instructions on OpenWrt wiki carefully and use my generated firmwares with <u>**your own risks**</u>.*
+
+The OpenWRT project is perfect for powerful devices, .
 However, its snapshot build is a very minimal version without the WebUI manager (LUCI) and some common useful tools like SAMBA, DLNA, OpenVPN, torrent,...
 To be updated to the latest build, it takes time to do some of the most boring tasks: flash the update, install my needed components.
 That's the reason for me to build this repository and make all thing be automated.
 
+# Supported devices
+## Xiaomi Router Gen 3G
 Read this if you are interesting:
 - The cheap but very powerful device: [Xiaomi Router Gen 3G](https://openwrt.org/toh/xiaomi/mir3g)
 - Minimal OpenWRT Firmware [download page](https://downloads.lede-project.org/snapshots/targets/ramips/mt7621/)
 - Padavan is providing support for this device also, take a look at [prometheus](http://prometheus.freize.net) if you are looking for another kind of firmware.
+
+## TP-Link Archer C50
+... Comming soon
 
 # Help wanted
 - [ ] Change the docker base image to [openwrtorg/imagebuilder](https://hub.docker.com/r/openwrtorg/imagebuilder) instead of centos 7 as current
