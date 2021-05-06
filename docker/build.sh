@@ -1,23 +1,13 @@
 #!/bin/bash
 
-# Prepare the bash context
 set -xe
-#source /opt/rh/rh-python38/enable
 
 # Prepare all needed environment variables
 OPENWRT_VERSION=${OPENWRT_VERSION:-snapshots}
-RELEASE_NAME=${OPENWRT_VERSION}-${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
-
+OPENWRT_DOWNLOAD_HOST=${OPENWRT_DOWNLOAD_HOST:-downloads.openwrt.org}
 RELEASE_MODEL=${RELEASE_MODEL:-xiaomi_mi-router-3g}
 RELEASE_ARCH=${RELEASE_ARCH:-ramips}
 RELEASE_SOC=${RELEASE_SOC:-mt7621}
-RELEASE_MODULES=${RELEASE_MODULES:-`cat /openwrt/modules/${RELEASE_MODEL}.txt | tr '\n' ' '`}
-
-GIT_USER=${GIT_REPO%%/*}
-GIT_REPO_NAME=${GIT_REPO##*/}
-OPENWRT_DOWNLOAD_HOST=${OPENWRT_DOWNLOAD_HOST:-downloads.openwrt.org}
-
-echo "Begin build ${RELEASE_NAME}@${OPENWRT_VERSION} for ${RELEASE_MODEL} with modules: ${RELEASE_MODULES}"
 
 if [ "${OPENWRT_VERSION}" == "snapshots" ]; then 
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
@@ -32,6 +22,14 @@ else
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${OPENWRT_VERSION}-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 fi
 
+RELEASE_NAME=${OPENWRT_VERSION}-${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
+RELEASE_MODULES=${RELEASE_MODULES:-`cat /openwrt/modules/${RELEASE_MODEL}.txt | tr '\n' ' '`}
+
+GIT_USER=${GIT_REPO%%/*}
+GIT_REPO_NAME=${GIT_REPO##*/}
+
+echo "Begin build ${RELEASE_NAME}@${OPENWRT_VERSION} for ${RELEASE_MODEL} with modules: ${RELEASE_MODULES}"
+
 # Save some debug time
 if [ ! -f openwrt-imagebuilder.tar.xz ]; then
 	wget $DOWNLOAD_URL -O openwrt-imagebuilder.tar.xz
@@ -43,7 +41,7 @@ cd /tmp/openwrt-imagebuilder
 BIN_DIR=/openwrt/target/
 mkdir -p $BIN_DIR
 make info
-make image PROFILE=${RELEASE_MODEL} "PACKAGES=${MODULES}" BIN_DIR=${BIN_DIR}
+make image PROFILE=${RELEASE_MODEL} "PACKAGES=${RELEASE_MODULES}" BIN_DIR=${BIN_DIR}
 
 echo "Current ouput dir: $BIN_DIR"
 ls -laR $BIN_DIR
