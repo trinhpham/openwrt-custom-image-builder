@@ -35,7 +35,7 @@ Read this if you are interesting:
 Name: [trinhpham/xiaomi-r3g-openwrt-builder](https://hub.docker.com/r/trinhpham/xiaomi-r3g-openwrt-builder)
 
 - This is a build-automated docker image that has all needed build tools and libraries installed.
-- This also includes github-release tool for the script `build.sh` to automatic deploy new release files to Github
+- This also includes [github-release](https://github.com/github-release/github-release) tool for the script `build.sh` to automatic deploy new release files to Github
 
 # The Travis-CI build
 You can view my automated build at [travis-ci.com](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder).
