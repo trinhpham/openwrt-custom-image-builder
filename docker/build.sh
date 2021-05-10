@@ -60,13 +60,13 @@ if [ $? -eq 0 ] ; then
 			--description "CI build includes: ${RELEASE_MODULES}" \
 			$RELEASE_TYPE
 
-		for f in .; do
+		for f in $BIN_DIR/*; do
 			if [ -f $f ]; then 
 				github-release upload \
 					--user $GIT_USER \
 					--repo $GIT_REPO_NAME \
 					--tag $RELEASE_NAME \
-					--name $f \
+					--name ${f##*/} \
 					--file $f
 			fi
 		done
