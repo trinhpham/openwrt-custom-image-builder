@@ -11,6 +11,7 @@ RELEASE_SOC=${RELEASE_SOC:-mt7621}
 
 if [ "${OPENWRT_VERSION}" == "snapshots" ]; then 
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
+	RELEASE_TYPE=--pre-release
 elif [ "${OPENWRT_VERSION}" == "stable" ]; then 
 	OPENWRT_VERSION=`curl -s https://openwrt.org/ | grep -oP 'Current Stable Release[^0-9]*\K[0-9]*\.[0-9]*\.[0-9]*'`
 	if [ -z "$OPENWRT_VERSION" ]; then
@@ -56,42 +57,18 @@ if [ $? -eq 0 ] ; then
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name $RELEASE_NAME \
-			--description "CI build includes: ${RELEASE_MODULES}"
-			
-		github-release upload \
-			--user $GIT_USER \
-			--repo $GIT_REPO_NAME \
-			--tag $RELEASE_NAME \
-			--name `ls openwrt-*.manifest` \
-			--file `ls openwrt-*.manifest`
-			
-		github-release upload \
-			--user $GIT_USER \
-			--repo $GIT_REPO_NAME \
-			--tag $RELEASE_NAME \
-			--name `ls openwrt-*-squashfs-rootfs0.bin` \
-			--file `ls openwrt-*-squashfs-rootfs0.bin`
-			
-		github-release upload \
-			--user $GIT_USER \
-			--repo $GIT_REPO_NAME \
-			--tag $RELEASE_NAME \
-			--name sha256sums \
-			--file sha256sums
+			--description "CI build includes: ${RELEASE_MODULES}" \
+			$RELEASE_TYPE
 
-		github-release upload \
-			--user $GIT_USER \
-			--repo $GIT_REPO_NAME \
-			--tag $RELEASE_NAME \
-			--name `ls openwrt-*-squashfs-kernel1.bin` \
-			--file `ls openwrt-*-squashfs-kernel1.bin`
-			
-		github-release upload \
-			--user $GIT_USER \
-			--repo $GIT_REPO_NAME \
-			--tag $RELEASE_NAME \
-			--name `ls openwrt-*-squashfs-sysupgrade.bin` \
-			--file `ls openwrt-*-squashfs-sysupgrade.bin`
+		for f in .
+		do
+			github-release upload \
+				--user $GIT_USER \
+				--repo $GIT_REPO_NAME \
+				--tag $RELEASE_NAME \
+				--name $f \
+				--file $f
+		done
 	else
 		echo "Skip github release uploading"
 	fi
