@@ -23,7 +23,7 @@ else
 	DOWNLOAD_URL=https://${OPENWRT_DOWNLOAD_HOST}/releases/${OPENWRT_VERSION}/targets/${RELEASE_ARCH}/${RELEASE_SOC}/openwrt-imagebuilder-${OPENWRT_VERSION}-${RELEASE_ARCH}-${RELEASE_SOC}.Linux-x86_64.tar.xz
 fi
 
-RELEASE_NAME=${OPENWRT_VERSION}-${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
+RELEASE_NAME=${RELEASE_MODEL}-${OPENWRT_VERSION}-${RELEASE_PREFIX:-v1.0}-$(date +%Y%m%d_%H%M%S)
 RELEASE_MODULES=${RELEASE_MODULES:-`cat /openwrt/modules/${RELEASE_MODEL}.txt | tr '\n' ' '`}
 
 GIT_USER=${GIT_REPO%%/*}

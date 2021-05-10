@@ -24,3 +24,5 @@ jobs:
       env: OPENWRT_VERSION=snapshots RELEASE_MODEL=xiaomi_mi-router-3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
     - name: r3g-stable
       env: OPENWRT_VERSION=stable RELEASE_MODEL=xiaomi_mir3g RELEASE_ARCH=ramips RELEASE_SOC=mt7621
+    - name: c50v4-stable
+      env: OPENWRT_VERSION=stable RELEASE_MODEL=tplink_c50-v4 RELEASE_ARCH=ramips RELEASE_SOC=mt76x8
