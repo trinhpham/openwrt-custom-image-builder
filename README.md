@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder)
+[![Build Status](https://api.travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder)
 
 [Latest build](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder/releases/latest)
 
