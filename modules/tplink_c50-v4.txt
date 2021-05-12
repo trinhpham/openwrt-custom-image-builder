@@ -1,0 +1,16 @@
+aria2
+kmod-pptp
+kmod-wireguard
+luci
+luci-app-aria2
+luci-app-firewall
+luci-app-openvpn
+luci-app-opkg
+luci-app-wireguard
+luci-proto-ppp
+luci-proto-wireguard
+luci-theme-bootstrap
+openssl-util
+openvpn-openssl
+ppp-mod-pptp
+wireguard-tools
