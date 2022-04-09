@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  build-image:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: "Build image"
+          command: "make image PROFILE=${RELEASE_MODEL}"
+
+workflows:
+  build-workflow:
+    jobs:
+      - build-image
