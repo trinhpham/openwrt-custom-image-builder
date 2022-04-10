@@ -1,7 +1,6 @@
 [![CircleCI](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master.svg?style=svg)](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master)
-[Latest build](https://github.com/trinhpham/openwrt-custom-image-builder/releases/latest)
-
-[Homepage](https://github.com/trinhpham/openwrt-custom-image-builder)
+[![Artifacts](https://img.shields.io/badge/CircleCI-artifacts-green)](https://app.circleci.com/pipelines/github/trinhpham/openwrt-custom-image-builder?branch=master&filter=all&status=none&status=success)
+[![Homepage](https://img.shields.io/badge/Github-repo-green)](https://github.com/trinhpham/openwrt-custom-image-builder)
 
 # Introduction
 **NOTE**: 
