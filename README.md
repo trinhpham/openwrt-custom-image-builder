@@ -1,12 +1,11 @@
-[![Build Status](https://api.travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder.svg?branch=master)](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder)
+[![CircleCI](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master.svg?style=svg)](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master)
+[Latest build](https://github.com/trinhpham/openwrt-custom-image-builder/releases/latest)
 
-[Latest build](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder/releases/latest)
-
-[Homepage](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder)
+[Homepage](https://github.com/trinhpham/openwrt-custom-image-builder)
 
 # Introduction
 **NOTE**: 
-- *This repository helps generate OpenWrt firmware for <u>**any**</u> supported devices. I keep the old repo name, since it was first made to generate firmwares for my first OpenWrt router: Xiaomi Router Gen 3G.*
+- *This repository helps generate OpenWrt firmware for <u>**any**</u> supported devices. It was first made to generate firmwares for my first OpenWrt router: Xiaomi Router Gen 3G.*
 - *This repository is just for building the firmware. Any OpenWrt related issue should be posted to OpenWrt's forum.*
 - *Read your device's instructions on OpenWrt wiki carefully and use my generated firmwares with <u>**your own risks**</u>.*
 
@@ -26,36 +25,28 @@ Read this if you are interesting:
 ... Comming soon
 
 # Help wanted
-- [ ] Change the docker base image to [openwrtorg/imagebuilder](https://hub.docker.com/r/openwrtorg/imagebuilder) instead of centos 7 as current
-- [x] Support build for both release/stable and snapshot version
-- [x] Support build for other devices
-- [ ] Move to Circle-CI, which allows us to have better Docker integration, and store build output as artifacts
-
-# The docker image
-Name: [trinhpham/xiaomi-r3g-openwrt-builder](https://hub.docker.com/r/trinhpham/xiaomi-r3g-openwrt-builder)
-
-- This is a build-automated docker image that has all needed build tools and libraries installed.
-- This also includes [github-release](https://github.com/github-release/github-release) tool for the script `build.sh` to automatic deploy new release files to Github
-
-# The Travis-CI build
-You can view my automated build at [travis-ci.com](https://travis-ci.com/trinhpham/xiaomi-r3g-openwrt-builder).
-This build calls the build script `build.sh` inside a Docker container of Docker image above.
-
-_Note:_ Travis-CI doesn't support Docker volume mounting (except its Enterprise plan, [ref](https://docs.travis-ci.com/user/enterprise/worker-configuration/#mounting-volumes-across-worker-jobs-on-enterprise)), so you cannot transfer neither source nor ouput files to/from the container. I chose to run all build tasks inside the Docker container, tell me if you have any better idea :). 
+- N/A
 
 # Fork notes
 There are some notes if you'd like to fork my build:
-- You must pass the environment variable `GITHUB_TOKEN` for the github-release, `DOCKER_USERNAME` and `DOCKER_PASSWORD` for helping reduce [impact of Docker hub limit rate](https://blog.travis-ci.com/docker-rate-limits) 
-- Add your preferred OpenWrt version and device's configs to `job.include` in `.travis.yml`
-- Update your preferred modules into file `modules/<DeviceModel>.txt`, in which `DeviceModel` (named as `RELEASE_MODEL` in build env var) is the profile name that can be retrieve from command `make info`
-
+- You must CircleCI's context secrets named `DockerHub` which contains `DOCKERHUB_USERNAME` and `DOCKERHUB_PASS` to be able to pull the builder image due to Docker hub rate limits.
+- Add your preferred OpenWrt version and device's configs to workflow matrix in `.circleci/config.yml`
+- Find your device on [OpenWrt table of hardware](https://openwrt.org/toh). If it is supported, most of its required information below can be found in the firmware download URL. Make your device profile folder with rules:
+  + Folder name is your device's PROFILE
+  + `arch_soc.txt` contains your device architecture and System on Chip model
+  + `modules.txt` contains list modules you want to pack into this custom build
+  + For example, download URL of my device looks like [.../openwrt-21.02.2-ramips-mt7621-xiaomi_mi-router-3g-squashfs-rootfs0.bin](https://downloads.openwrt.org/releases/21.02.2/targets/ramips/mt7621/openwrt-21.02.2-ramips-mt7621-xiaomi_mi-router-3g-squashfs-rootfs0.bin), so its profile is `xiaomi_mi-router-3g`, arch is `ramips` and soc is `mt7621`
 # Debug
-- Build the docker image by command `docker build -t testimage docker/`
+- Determine your needed arguments for your build or use command
+```bash
+source ./findReleaseInfo.sh xiaomi_mi-router-3g stable
+```
 - Run the build image with command 
 ```
-docker run -it --rm -v $(pwd):/openwrt/ \
-    -e OPENWRT_DOWNLOAD_HOST=sv1-di.getto.dev \
-    -e RELEASE_MODEL=xiaomi_mir3g \
-    -e OPENWRT_VERSION=stable \
-    testimage /openwrt/docker/build.sh
+docker run -it --rm \
+    -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH \
+    -v $(pwd):/home/build/openwrt/custom_scripts \
+    -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} \
+    /home/build/openwrt/custom_scripts/build.sh xiaomi_mi-router-3g
 ```
+- You might need to run `chmod -R 777 .` for your source directory if facing any permission errors 

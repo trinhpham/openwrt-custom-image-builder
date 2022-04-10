@@ -1,2 +1,4 @@
 openwrt*
 target/
+targets/
+bin/
