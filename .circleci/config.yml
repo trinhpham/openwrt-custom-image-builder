@@ -25,7 +25,8 @@ jobs:
             source ./findReleaseInfo.sh << parameters.release_model >> << parameters.release_ver >>
             mkdir bin
             chmod 777 bin
-            docker run --rm -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
+            export SOURCE_DATE_EPOCH="$(git log -1 --format=%at $(git describe --abbrev=0))"
+            docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
 
 
 workflows:
