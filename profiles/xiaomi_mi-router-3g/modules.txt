@@ -1,4 +1,5 @@
 aria2
+block-mount
 gdisk
 hd-idle
 htop
