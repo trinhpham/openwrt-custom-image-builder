@@ -11,6 +11,6 @@ export PACKAGES=`echo -e "${ADDITIONAL_PACKAGES}\n${BUILTIN_PACKAGES}" | sort | 
 export PROFILE=$1
 
 echo "Start building $PROFILE with these packages: $PACKAGES"
-echo $PACKAGES > bin/target/$(cat custom_scripts/profiles/$1/arch_soc.txt | tr "-" "/")/${1}-packed_modules.txt
+echo $PACKAGES > bin/targets/$(cat custom_scripts/profiles/$1/arch_soc.txt | tr "-" "/")/${1}-packed_modules.txt
 
 make image
