@@ -22,6 +22,7 @@ jobs:
       - run:
           name: "Build image"
           command: |
+            set -xe
             source ./findReleaseInfo.sh << parameters.release_model >> << parameters.release_ver >>
             mkdir bin
             chmod 777 bin
