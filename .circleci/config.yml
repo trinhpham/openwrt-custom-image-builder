@@ -34,13 +34,6 @@ jobs:
           path: bin/targets
 workflows:
   build-workflow:
-    triggers:
-      - schedule:
-          cron: "0 0 17 ? * SUN *" # weekly
-          filters:
-            branches:
-              only:
-                - master
     jobs:
       - build-image:
           matrix:
