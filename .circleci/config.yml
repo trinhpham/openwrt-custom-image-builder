@@ -8,7 +8,7 @@ jobs:
     machine:
       image: ubuntu-2004:current
       docker_layer_caching: true
-    resource_class: small
+    resource_class: medium
     parameters:
       release_model:
         type: string
@@ -25,7 +25,7 @@ jobs:
             source ./findReleaseInfo.sh << parameters.release_model >> << parameters.release_ver >>
             mkdir bin
             chmod 777 bin
-            docker run --rm -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh
+            docker run --rm -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
 
 
 workflows:

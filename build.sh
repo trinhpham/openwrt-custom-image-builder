@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd ..
+pwd
 
 BUILTIN_PACKAGES=`make info | grep -A2 "^${1}:$" | grep -oP "Packages:\K.*" | tr " " "\n"`
 echo "Builtin packages: $BUILTIN_PACKAGES"
