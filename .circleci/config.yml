@@ -34,7 +34,14 @@ workflows:
       - build-image:
           matrix:
             parameters:
-              release_model: ["xiaomi_mi-router-3g"]
+              release_model: ["xiaomi_mi-router-3g", "xiaomi_mir3g"]
               release_ver: ["snapshot", "stable", "openwrt-19.07"]
+          exclude:
+            - release_model: xiaomi_mi-router-3g
+              release_ver: openwrt-19.07
+            - release_model: xiaomi_mir3g
+              release_ver: snapshot
+            - release_model: xiaomi_mir3g
+              release_ver: stable
           context: 
             - DockerHub
