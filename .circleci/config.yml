@@ -26,8 +26,11 @@ jobs:
             mkdir bin
             chmod 777 bin
             export SOURCE_DATE_EPOCH="$(git log -1 --format=%at $(git describe --abbrev=0))"
-            docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
+            docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH --user $(id -u):$(id -g) -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
 
+      - store_artifacts:
+          path: bin/target
+          name: << parameters.release_model >>-${RELEASE_VER}
 
 workflows:
   build-workflow:
@@ -35,14 +38,16 @@ workflows:
       - build-image:
           matrix:
             parameters:
-              release_model: ["xiaomi_mi-router-3g", "xiaomi_mir3g"]
-              release_ver: ["snapshot", "stable", "openwrt-19.07"]
-            exclude:
-              - release_model: xiaomi_mi-router-3g
-                release_ver: openwrt-19.07
-              - release_model: xiaomi_mir3g
-                release_ver: snapshot
-              - release_model: xiaomi_mir3g
-                release_ver: stable
+              # release_model: ["xiaomi_mi-router-3g", "xiaomi_mir3g"]
+              # release_ver: ["snapshot", "stable", "openwrt-19.07"]
+              release_model: ["xiaomi_mi-router-3g"]
+              release_ver: ["snapshot", "stable"]
+            # exclude:
+            #   - release_model: xiaomi_mi-router-3g
+            #     release_ver: openwrt-19.07
+            #   - release_model: xiaomi_mir3g
+            #     release_ver: snapshot
+            #   - release_model: xiaomi_mir3g
+            #     release_ver: stable
           context: 
             - DockerHub
