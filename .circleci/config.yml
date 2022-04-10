@@ -30,8 +30,6 @@ jobs:
 
       - store_artifacts:
           path: bin/target
-          destination: << parameters.release_model >>-<< parameters.release_ver >>
-
 workflows:
   build-workflow:
     jobs:
