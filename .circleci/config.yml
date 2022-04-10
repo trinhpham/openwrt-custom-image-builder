@@ -1,15 +1,45 @@
 version: 2.1
 
+orbs:
+  docker: circleci/docker@1.4.0
+
 jobs:
   build-image:
-    machine: true
+    machine:
+      image: ubuntu-2004:current
+      docker_layer_caching: true
+    resource_class: small
+    parameters:
+      release_model:
+        type: string
+      release_ver:
+        type: string
     steps:
+      - docker/check:
+          docker-username: DOCKERHUB_USERNAME
+          docker-password: DOCKERHUB_PASS
       - checkout
       - run:
+          name: "Search for arch, soc and version"
+          command: |
+            source ./findReleaseInfo.sh << parameters.release_model >> << parameters.release_ver >>
+      - docker/pull:
+          images: 'openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-openwrt-${RELEASE_VER}'
+      - run:
           name: "Build image"
-          command: "make image PROFILE=${RELEASE_MODEL}"
+          command: |
+            mkdir bin
+            chmod 777 bin
+            docker run --rm -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-openwrt-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh
+
 
 workflows:
   build-workflow:
     jobs:
-      - build-image
+      - build-image:
+          matrix:
+            parameters:
+              RELEASE_MODEL: ["xiaomi_mi-router-3g"]
+              RELEASE_VER: ["snapshot", "stable"]
+          context: 
+            - DockerHub
