@@ -2,6 +2,8 @@
 [![Artifacts](https://img.shields.io/badge/CircleCI-artifacts-green)](https://app.circleci.com/pipelines/github/trinhpham/openwrt-custom-image-builder?branch=master&filter=all&status=none&status=success)
 [![Homepage](https://img.shields.io/badge/Github-repo-green)](https://github.com/trinhpham/openwrt-custom-image-builder)
 
+[![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open-%230092CF.svg)](https://gitpod.io/#https://github.com/trinhpham/openwrt-custom-image-builder)
+
 # Introduction
 **NOTE**: 
 - *This repository helps generate OpenWrt firmware for <u>**any**</u> supported devices. It was first made to generate firmwares for my first OpenWrt router: Xiaomi Router Gen 3G.*
