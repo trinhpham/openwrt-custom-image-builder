@@ -10,10 +10,8 @@
 - *This repository is just for building the firmware. Any OpenWrt related issue should be posted to OpenWrt's forum.*
 - *Read your device's instructions on OpenWrt wiki carefully and use my generated firmwares with <u>**your own risks**</u>.*
 
-The OpenWRT project is perfect for powerful devices, .
-However, its snapshot build is a very minimal version without the WebUI manager (LUCI) and some common useful tools like SAMBA, DLNA, OpenVPN, torrent,...
-To be updated to the latest build, it takes time to do some of the most boring tasks: flash the update, install my needed components.
-That's the reason for me to build this repository and make all thing be automated.
+The OpenWRT project is perfect for powerful devices (like my old-but-great Xiaomi R3G). However, the official release/snapshot builds are very minimal versions without the WebUI manager (LUCI) and some common useful packages like SAMBA, DLNA, OpenVPN, torrent,... 
+To be updated to the latest build, it takes time to do some of the most boring tasks: flash the update, install my needed components. That's the reason for me to build this repository and make all thing be automated
 
 # Supported devices
 ## Xiaomi Router Gen 3G
