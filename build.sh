@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -xe
 pwd
 
 BUILTIN_PACKAGES=`make info | grep -A2 "^${1}:$" | grep -oP "Packages:\K.*" | tr " " "\n"`
@@ -13,4 +14,4 @@ export PROFILE=$1
 echo "Start building $PROFILE with these packages: $PACKAGES"
 echo $PACKAGES > bin/targets/$(cat custom_scripts/profiles/$1/arch_soc.txt | tr "-" "/")/${1}-packed_modules.txt
 
-make image
+make image "PROFILE=$PROFILE" "PACKAGES=$PACKAGES"
