@@ -38,7 +38,7 @@ There are some notes if you'd like to fork my build:
 # Debug
 - Determine your needed arguments for your build or use command
 ```bash
-source ./findReleaseInfo.sh xiaomi_mi-router-3g stable
+source ./findReleaseInfo.sh xiaomi_mi-router-3g release
 ```
 - Run the build image with command 
 ```
