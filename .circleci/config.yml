@@ -28,10 +28,10 @@ jobs:
             mkdir bin
             chmod 777 bin
             docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH \
-              -v $(pwd):/home/build/openwrt/custom_scripts \
-              -v $(pwd)/bin:/home/build/openwrt/bin \
+              -v $(pwd):/builder/custom_scripts \
+              -v $(pwd)/bin:/builder/bin \
               openwrt/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} \
-              /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
+              /builder/custom_scripts/build.sh << parameters.release_model >>
             ls -laR bin/targets
 
       - store_artifacts:
