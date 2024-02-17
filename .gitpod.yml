@@ -1,0 +1,5 @@
+tasks:
+  - init: |
+      source ./findReleaseInfo.sh xiaomi_mi-router-3g stable 
+      docker pull openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER}
+    command: echo "Ready for ${RELEASE_ARCH_SOC}-${RELEASE_VER}"
