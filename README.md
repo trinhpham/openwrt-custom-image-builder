@@ -40,14 +40,19 @@ There are some notes if you'd like to fork my build:
 - This project is ready for [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open-%230092CF.svg)](https://gitpod.io/#https://github.com/trinhpham/openwrt-custom-image-builder)
 - Determine your needed arguments for your build or use command
 ```bash
-source ./findReleaseInfo.sh xiaomi_mi-router-3g stable
+source ./findReleaseInfo.sh xiaomi_mi-router-3g release
 ```
 - Run the build image with command 
 ```
+# Create output folder
+mkdir bin
+chmod 777 bin
+
+# Run the build
 docker run -it --rm \
     -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH \
-    -v $(pwd):/home/build/openwrt/custom_scripts \
-    -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} \
-    /home/build/openwrt/custom_scripts/build.sh xiaomi_mi-router-3g
+    -v $(pwd):/builder/custom_scripts \
+    -v $(pwd)/bin:/builder/bin openwrt/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} \
+    /builder/custom_scripts/build.sh xiaomi_mi-router-3g
 ```
 - You might need to run `chmod -R 777 .` for your source directory if facing any permission errors 

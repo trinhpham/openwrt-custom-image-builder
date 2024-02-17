@@ -6,7 +6,7 @@ orbs:
 jobs:
   build-image:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
       docker_layer_caching: true
     resource_class: medium
     parameters:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - docker/check:
           docker-username: DOCKERHUB_USERNAME
-          docker-password: DOCKERHUB_PASS
+          docker-password: DOCKERHUB_TOKEN
       - checkout
       - run:
           name: "Build image"
@@ -27,7 +27,11 @@ jobs:
             source ./findReleaseInfo.sh << parameters.release_model >> << parameters.release_ver >>
             mkdir bin
             chmod 777 bin
-            docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH -v $(pwd):/home/build/openwrt/custom_scripts -v $(pwd)/bin:/home/build/openwrt/bin openwrtorg/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} /home/build/openwrt/custom_scripts/build.sh << parameters.release_model >>
+            docker run --rm -e SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH \
+              -v $(pwd):/builder/custom_scripts \
+              -v $(pwd)/bin:/builder/bin \
+              openwrt/imagebuilder:${RELEASE_ARCH_SOC}-${RELEASE_VER} \
+              /builder/custom_scripts/build.sh << parameters.release_model >>
             ls -laR bin/targets
 
       - store_artifacts:
@@ -39,15 +43,15 @@ workflows:
           matrix:
             parameters:
               # release_model: ["xiaomi_mi-router-3g", "xiaomi_mir3g"]
-              # release_ver: ["snapshot", "stable", "openwrt-19.07"]
+              # release_ver: ["master", "release", "openwrt-19.07"]
               release_model: ["xiaomi_mi-router-3g"]
-              release_ver: ["snapshot", "stable"]
+              release_ver: ["master", "release"]
             # exclude:
             #   - release_model: xiaomi_mi-router-3g
             #     release_ver: openwrt-19.07
             #   - release_model: xiaomi_mir3g
-            #     release_ver: snapshot
+            #     release_ver: master
             #   - release_model: xiaomi_mir3g
-            #     release_ver: stable
+            #     release_ver: release
           context: 
             - DockerHub
