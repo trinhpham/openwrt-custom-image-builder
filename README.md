@@ -35,7 +35,9 @@ There are some notes if you'd like to fork my build:
   + `arch_soc.txt` contains your device architecture and System on Chip model
   + `modules.txt` contains list modules you want to pack into this custom build
   + For example, download URL of my device looks like [.../openwrt-21.02.2-ramips-mt7621-xiaomi_mi-router-3g-squashfs-rootfs0.bin](https://downloads.openwrt.org/releases/21.02.2/targets/ramips/mt7621/openwrt-21.02.2-ramips-mt7621-xiaomi_mi-router-3g-squashfs-rootfs0.bin), so its profile is `xiaomi_mi-router-3g`, arch is `ramips` and soc is `mt7621`
+
 # Debug
+- This project is ready for [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open-%230092CF.svg)](https://gitpod.io/#https://github.com/trinhpham/openwrt-custom-image-builder)
 - Determine your needed arguments for your build or use command
 ```bash
 source ./findReleaseInfo.sh xiaomi_mi-router-3g release
