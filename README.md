@@ -1,5 +1,5 @@
-[![CircleCI](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master.svg?style=svg)](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/master)
-[![Artifacts](https://img.shields.io/badge/CircleCI-artifacts-green)](https://app.circleci.com/pipelines/github/trinhpham/openwrt-custom-image-builder?branch=master&filter=all&status=none&status=success)
+[![CircleCI](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/main.svg?style=svg)](https://circleci.com/gh/trinhpham/openwrt-custom-image-builder/tree/main)
+[![Artifacts](https://img.shields.io/badge/CircleCI-artifacts-green)](https://app.circleci.com/pipelines/github/trinhpham/openwrt-custom-image-builder?branch=main&filter=all&status=none&status=success)
 [![Homepage](https://img.shields.io/badge/Github-repo-green)](https://github.com/trinhpham/openwrt-custom-image-builder)
 
 [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open-%230092CF.svg)](https://gitpod.io/#https://github.com/trinhpham/openwrt-custom-image-builder)
