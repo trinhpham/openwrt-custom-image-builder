@@ -18,7 +18,6 @@ luci-app-openvpn
 luci-app-opkg
 luci-app-samba4
 luci-app-uhttpd
-luci-app-wireguard
 luci-proto-ppp
 luci-proto-wireguard
 luci-theme-bootstrap
