@@ -15,7 +15,7 @@ else
 	export RELEASE_VER=$2
 fi
 
-export SOURCE_DATE_EPOCH="$(git log -1 --format=%at $(git describe --abbrev=0))"
+export SOURCE_DATE_EPOCH="$(git log -1 --format=%at $(git describe --abbrev=0 --tags))"
 
 echo "Release version: $RELEASE_VER"
 echo "Build script date: $SOURCE_DATE_EPOCH"

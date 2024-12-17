@@ -3,6 +3,10 @@
 set -xe
 pwd
 
+if [ -e 'setup.sh' ]; then
+  ./setup.sh
+fi
+
 BUILTIN_PACKAGES=`make info | grep -A2 "^${1}:$" | grep -oP "Packages:\K.*" | tr " " "\n"`
 echo "Builtin packages: $BUILTIN_PACKAGES"
 
